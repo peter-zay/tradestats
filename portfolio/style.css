@@ -1,8 +1,10 @@
+
+
 @media only screen and (min-width: 1024px) {
     #projects-dropdown {
         text-align: center; /* Center the text for desktop view */
     }
-    
+
     body {
         font-size: 18px;
         padding: 0 150px;
