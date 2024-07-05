@@ -1,0 +1,88 @@
+body {
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    color: #ecf0f1;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 5%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ecf0f1;
+}
+
+input, select, textarea {
+    background-color: #34495e;
+    color: #ecf0f1;
+    border: 1px solid #7f8c8d;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #1abc9c;
+    outline: none;
+}
+
+button {
+    background-color: #1abc9c;
+    color: #ecf0f1;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #16a085;
+}
+
+#thankYouMessage {
+    background-color: #27ae60;
+    color: #ecf0f1;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.recorded-answer {
+    background-color: #34495e;
+    color: #ecf0f1;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 3px;
+}
+
+.ace-card {
+    background-color: #34495e;
+    color: #ecf0f1;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ace-card h2 {
+    margin-top: 0;
+}
+
+.name-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-group {
+    flex: 1;
+}
+
+.input-group input {
+    width: 100%;
+}
