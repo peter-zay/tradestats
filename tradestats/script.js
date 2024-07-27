@@ -1,4 +1,10 @@
-
+/*
+html, body {
+    height: 100%; /* Ensure the body takes full height */
+    margin: 0; /* Remove default margin */
+document.body.style.display = 'flex';
+document.body.style.justifyContent = 'center'; // Center horizontally
+document.body.style.alignItems = 'center'; // Center vertically
     // Add input validation for phone number
     const phoneInput = document.getElementById('phone');
     if (phoneInput) {
@@ -32,8 +38,22 @@
     const form = document.getElementById('yourFormId'); // Replace 'yourFormId' with the actual form ID
     if (form) {
         form.addEventListener('submit', storeUserData);
+
+        // Create a container for inputs
+        const container = document.createElement('div');
+
+        // Append all input fields to the container
+        const inputs = form.querySelectorAll('input');
+        inputs.forEach(input => {
+            container.appendChild(input);
+        });
+
+        // Clear the form and append the container
+        form.innerHTML = ''; // Clear existing form content
+        form.appendChild(container); // Append the container to the form
     }
 
+    // Ensure no button creation code exists below this point
 
 let formSubmitted = false;
 

@@ -9,65 +9,105 @@
   .user-card {
     display: none; /* Ensure the user card is hidden initially */
   }
+  input, select, textarea {
+    width: 50%; /* Changed from 100% to 50% for all input types */
+  }
+  html, body {
+    height: 100%; /* Ensure the body takes full height */
+    margin: 0; /* Remove default margin */
+  }
+
+  body {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+
+  .container {
+    text-align: center; /* Center text within the container */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 100%; /* Full height */
+  }
 </style>
 </head>
 <body>
 <div class="container">
-  <h2 id="welcomeMessage">Welcome to the Registration</h2>
-  <form id="registrationForm" onsubmit="storeUserData(event)">
-    <div class="name-container">
-      <div class="input-group">
-        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required onkeypress="handleKeyPress(event)">
-      </div>
-      <div class="input-group">
-        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required onkeypress="handleKeyPress(event)">
-      </div>
+    <h1>Register</h1>
+    <form id="registrationForm">
+        <input type="text" placeholder="First Name" required>
+        <input type="text" placeholder="Last Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Employer" required>
+        <input type="text" placeholder="Telephone Number" required>
+        <button type="submit" id="registerButton" style="display: block; margin: 10px auto; text-align: center;">Register</button>
+    </form>
+    <div class="card" id="submittedData" style="display: none; text-align: left;"> <!-- Align text to the left -->
+        <h2>User Profile</h2>
+        <p id="userData"></p>
+        <button id="editButton">Edit</button> <!-- Added edit button -->
     </div>
-    <div class="input-container">
-      <input type="text" id="userInput" name="userInput" placeholder="Enter your email address" required onkeypress="handleKeyPress(event)">
-    </div>
-    <div class="input-container">
-      <input type="text" id="employer" name="employer" placeholder="Enter your employer" required onkeypress="handleKeyPress(event)">
-    </div>
-    <div class="input-container">
-      <input type="text" id="telephone" name="telephone" placeholder="Enter your telephone number" required onkeypress="handleKeyPress(event)">
-    </div>
-    <div class="card-container">
-      <div class="user-card">
-        <p id="recordedData"></p>
-      </div>
-    </div>
-    <button type="submit">Submit</button>
-  </form>
 </div>
 
 <script>
-function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        recordData(event.target);
-    }
-}
-
-function recordData(inputElement) {
-    const recordedData = document.getElementById('recordedData');
-    const card = document.querySelector('.user-card');
-
-    if (inputElement.value) {
-        recordedData.textContent += `${inputElement.value}\n`;
-        card.style.display = 'block';
-    } else {
-        alert(`Please enter a valid ${inputElement.placeholder.toLowerCase()}.`);
-    }
-}
-
-function storeUserData(event) {
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    const inputs = document.querySelectorAll('#registrationForm input');
-    const recordedData = document.getElementById('recordedData');
-    recordedData.textContent = ''; // Clear previous data
-    inputs.forEach(input => recordData(input));
-}
+
+    const firstName = this[0].value;
+    const lastName = this[1].value;
+    const email = this[2].value;
+    const employer = this[3].value.toUpperCase(); // Capitalize employer
+    const telephone = this[4].value;
+
+    // Validation
+    const namePattern = /^[A-Za-z]+$/; // Letters only
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email with @
+    const phonePattern = /^\d{3}-\d{3}-\d{4}$/; // Phone format
+
+    if (!namePattern.test(firstName)) {
+        alert('First Name must contain letters only.');
+        return;
+    }
+    if (!namePattern.test(lastName)) {
+        alert('Last Name must contain letters only.');
+        return;
+    }
+    if (!emailPattern.test(email)) {
+        alert('Email must contain an @ sign.');
+        return;
+    }
+    if (!phonePattern.test(telephone)) {
+        alert('Telephone Number must be in the format 123-123-1234.');
+        return;
+    }
+
+    // Display submitted data with labels in the card
+    const submittedDataDiv = document.getElementById('submittedData');
+    submittedDataDiv.querySelector('p').innerHTML = 
+        `First Name: ${firstName}<br>` +
+        `Last Name: ${lastName}<br>` +
+        `Email: ${email}<br>` +
+        `Employer: ${employer}<br>` +
+        `Telephone Number: ${telephone}`;
+    submittedDataDiv.style.display = 'block';
+});
+
+document.getElementById('editButton').addEventListener('click', function() {
+    const userData = document.getElementById('userData').innerHTML.split('<br>');
+    const form = document.getElementById('registrationForm');
+
+    // Populate the form fields with user data
+    form[0].value = userData[0].split(': ')[1]; // First Name
+    form[1].value = userData[1].split(': ')[1]; // Last Name
+    form[2].value = userData[2].split(': ')[1]; // Email
+    form[3].value = userData[3].split(': ')[1]; // Employer
+    form[4].value = userData[4].split(': ')[1]; // Telephone Number
+
+    // Optionally, hide the user profile card
+    document.getElementById('submittedData').style.display = 'none';
+});
 </script>
 </body>
 </html>

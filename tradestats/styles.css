@@ -8,6 +8,7 @@ body {
 
 .container {
     margin: 5%;
+    text-align: center; /* Center text within the container */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -85,4 +86,25 @@ button:hover {
 
 .input-group input {
     width: 50%; /* Changed from 100% to 50% */
+}
+
+.card {
+    background-color: #34495e;
+    color: #ecf0f1;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+}
+
+html, body {
+    height: 100%; /* Ensure the body takes full height */
+    margin: 0; /* Remove default margin */
+}
+
+body {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
