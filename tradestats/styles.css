@@ -21,7 +21,7 @@ input, select, textarea {
     padding: 10px;
     margin: 5px 0;
     box-sizing: border-box;
-    width: 100%;
+    width: 50%; /* Changed from 100% to 50% for all input types */
 }
 
 input:focus, select:focus, textarea:focus {
@@ -84,5 +84,5 @@ button:hover {
 }
 
 .input-group input {
-    width: 100%;
+    width: 50%; /* Changed from 100% to 50% */
 }
